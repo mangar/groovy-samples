@@ -25,7 +25,6 @@ public class DynamicStaticTypeTest{
 		//		i = "Mangar"
 		//		assert i.class == String.class
 		
-		
 	}
-	
+
 }
