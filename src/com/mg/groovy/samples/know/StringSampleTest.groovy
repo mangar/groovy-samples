@@ -28,6 +28,11 @@ public class StringSampleTest{
 		assert message.toString() == "Hi Message"
 		assert message instanceof java.lang.StringBuffer
 		
+		println ">"*30 + "<"*30
+		message.find(){ text -> println "${text}" }
+		println ">"*30 + "<"*30
+		
+		
 		message <<= " M"
 		println message + " / " + message.class
 		
