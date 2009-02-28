@@ -32,6 +32,10 @@ import org.junit.Test
  */
 public class ControlStructuresOneTest{
 	
+     public var01
+     private var02
+     def x = 1
+     
 	/**
 	 * @throws java.lang.Exception
 	 */

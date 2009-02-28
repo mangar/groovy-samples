@@ -32,6 +32,16 @@ public class Scoping{
 	    Mother julia = new Mother()
 	    def age = 30
 	    
+	    println "MName: $julia.name"
+	    julia.name = "Julia"	    
+	    println "MName: $julia.name"
+	            
+	    julia['name'] = "Julia []"        
+	    println "MName: $julia.name"	    
+	    
+	    println "Nao eh campo: $julia.abc"
+	    
+	    
 	    def closure = julia.birth(age)  
 	    println "Closure: ${closure}"
 	    

@@ -7,7 +7,6 @@ package com.mg.groovy.samples.closures
  */
 public class Mother{
 
-    
 	int field = 1 
 	int foo(){ 
 	    return 2 
@@ -41,6 +40,21 @@ public class Mother{
 //		    age += 1
 		    return "Sao Paulo - ${age++}"
 	    }
+	}
+
+	
+	String name = "Mother`s Name"
+	Object get(String name) {
+	    println "get: $name"
+	    return "get: $name"
+	}
+	void set(String name, Object value) {
+	    println "set: $name / $value"
+	}
+	
+	
+	static main(args) {
+	    println "Groovy main!"
 	}
 	
 }

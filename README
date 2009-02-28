@@ -8,8 +8,10 @@ Some Groovy sample code helping to learn it.
 - Date
 - Closure
 - RegularExpresison
-- 
-
+- Control Structures
+- Patterns
+- GroovyBeans
+- Multimethods
 
 LIB
 ===
