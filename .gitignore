@@ -1,5 +1,6 @@
 bin/*
 bin-groovy/*
+bin-groovy
 .DS_Store
 .classpath
 .project
