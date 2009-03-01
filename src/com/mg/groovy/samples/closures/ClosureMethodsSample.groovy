@@ -8,7 +8,9 @@ import org.junit.Test
  * @author Marcio Garcia - marcio@mangar.com.br
  */
 public class ClosureMethodsSample{
-	
+   
+    
+    
     @Test
     def void test_Currying() {
 		println "test_Currying - " *5

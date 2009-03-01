@@ -51,7 +51,7 @@ public class EqualizerMultimethod{
 	}
 	
 }
- 
+  
  
  class EqualizerObject { 
      boolean equals(EqualizerObject e){ 
