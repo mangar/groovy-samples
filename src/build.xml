@@ -2,16 +2,81 @@
 email: softwared@ymail.com
 twitter: softwared / 12345678
 -->
-<project name="prepareBookDirs" default="copy"> 
-  <property name="target.dir"   value="target"/>  
-  <property name="chapters.dir" value="chapters"/> 
-  
-  <target name="copy"> 
-    <delete dir="${target.dir}" /> 
-    <copy todir="${target.dir}"> 
-      <fileset dir="${chapters.dir}" 
-        includes="*.doc" 
-        excludes="~*"   /> 
-    </copy> 
-  </target> 
-</project> 
+<project name="prepareBookDirs" default="deploy" basedir=".">
+
+	<property name="jetty.home" value="/opt/jetty-6.1.15" />
+	<property name="webapp.dir" value="../webapp" />
+	<property name="bin.dir" value="" />
+
+	<property name="groovy-lib.dir" value="/Applications/Java/eclipse ganymede 3.4.1 /plugins/org.codehaus.groovy_1.5.7.20081120_2330" />
+	<property name="groovy-lib" value="groovy-all-1.5.7.jar" />
+
+	<property name="junit-lib.dir" value="/Applications/Java/eclipse ganymede 3.4.1 /plugins/org.junit4_4.3.1" />
+	<property name="junit-lib" value="junit.jar" />
+
+
+	<path id="classpath">
+		<fileset dir="${groovy-lib.dir}" includes="${groovy-lib}" />
+		<fileset dir="${junit-lib.dir}" includes="${junit-lib}" />
+	</path>
+	<taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc" classpathref="classpath" />
+
+
+	<!-- 
+        1 - copy context file to dir	
+	-->
+	<target name="init">
+		<copy file="${webapp.dir}/WEB-INF/groovy-samples.xml" todir="${jetty.home}/contexts" />
+	</target>
+
+	<!-- 
+	   2 - compile 
+	-->
+	<target name="compile" depends="init">
+
+		<mkdir dir="${webapp.dir}/WEB-INF/classes"/>
+		
+		<groovyc srcdir="./" destdir="${webapp.dir}/WEB-INF/classes">
+		  <classpath>
+		    <path refid="classpath"/>
+		  </classpath>
+		  <javac source="1.4" target="1.4" debug="on" />
+		</groovyc>
+
+	</target>
+
+
+	<!-- 
+	   3 - copy content from webapp dir
+	   4 - copy binaries
+    -->
+	<target name="deploy" depends="compile">
+		<!-- 3 -->
+		<copy todir="${jetty.home}/webapps/groovy-samples">
+			<fileset dir="${webapp.dir}">
+				<exclude name="**/groovy-samples.xml" />
+			</fileset>
+		</copy>
+
+		<!-- 4 -->
+        <copy todir="${jetty.home}/webapps/groovy-samples/">
+            <fileset dir="./com/mg/groovy/samples/servlet/">
+                <include name="*.groovy" />
+            </fileset>
+        </copy>
+
+		<!-- groovy -->
+        <copy todir="${jetty.home}/webapps/groovy-samples/WEB-INF/classes">
+            <fileset dir="./">
+                <include name="**/*.groovy" />
+            </fileset>
+        </copy>		
+		
+		<!-- libs... --> 
+		<copy file="${groovy-lib.dir}/${groovy-lib}" todir="${jetty.home}/webapps/groovy-samples/WEB-INF/lib" />
+		<copy file="${junit-lib.dir}/${junit-lib}" todir="${jetty.home}/webapps/groovy-samples/WEB-INF/lib" />
+		
+
+	</target>
+
+</project>
