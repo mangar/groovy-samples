@@ -1,5 +1,6 @@
 bin/*
 bin-groovy/*
+webapp/WEB-INF/classes/*
 .DS_Store
 .classpath
 .project
