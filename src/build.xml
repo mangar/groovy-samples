@@ -14,10 +14,14 @@ twitter: softwared / 12345678
 	<property name="junit-lib.dir" value="/Applications/Java/eclipse ganymede 3.4.1 /plugins/org.junit4_4.3.1" />
 	<property name="junit-lib" value="junit.jar" />
 
+    <property name="hsqldb-lib.dir" value="/Users/mangar/projects/blip_download/workspace/GroovyLearningProject/webapp/WEB-INF/" />	
+	<property name="hsqldb-lib" value="lib/hsqldb.jar" />
+	
 
 	<path id="classpath">
 		<fileset dir="${groovy-lib.dir}" includes="${groovy-lib}" />
 		<fileset dir="${junit-lib.dir}" includes="${junit-lib}" />
+		<fileset dir="${hsqldb-lib.dir}" includes="${hsqldb-lib}" />		
 	</path>
 	<taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc" classpathref="classpath" />
 
