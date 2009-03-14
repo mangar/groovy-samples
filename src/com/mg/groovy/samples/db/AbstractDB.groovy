@@ -11,18 +11,18 @@ import groovy.sql.Sql
 public abstract class AbstractDB{
 	
 	
-    /**
-     * Java Way, via DriverManager
-     */
-	def getConnection() {
-		Class.forName("org.hsqldb.jdbcDriver").newInstance();
-		DriverManager.getConnection("jdbc:hsqldb:file:./src/com/mg/groovy/samples/db/testdb", "sa", "");
-	}
+//    /**
+//     * Java Way, via DriverManager
+//     */
+//	def getConnection() {
+//		Class.forName("org.hsqldb.jdbcDriver").newInstance();
+//		DriverManager.getConnection("jdbc:hsqldb:file:./src/com/mg/groovy/samples/db/testdb", "sa", "");
+//	}
 	
 	/**
 	 * Groovy DB connection via DriverManager
 	 */
-	def connection() {
+	def getConnection() {
 		def db = Sql.newInstance( 
 				'jdbc:hsqldb:file:./src/com/mg/groovy/samples/db/testdb', 
 						'sa', 
@@ -34,9 +34,9 @@ public abstract class AbstractDB{
 	/**
 	 * Groovy connection via DataSource
 	 */
-	def ds() {
+	def getDs() {
 	    def source = new org.hsqldb.jdbc.jdbcDataSource() 
-	    source.database = 'jdbc:hsqldb:mem:GinA' 
+	    source.database = 'jdbc:hsqldb:file:./src/com/mg/groovy/samples/db/testdb' 
 	    source.user     = 'sa' 
 	    source.password = '' 
 	    def db = new groovy.sql.Sql(source)
@@ -71,7 +71,7 @@ public abstract class AbstractDB{
 	    db.execute sql_insert, ['AC/DC', 'Black Ice', '', '2008-12-01']
 	    db.execute sql_insert, ['Gun N\' Roses', 'Chinise Democracy', '', '2008-12-01']
 
-	    println "... setup concluded!"
+	    println "... setup concluded!\n"
 	}
 	
 }
