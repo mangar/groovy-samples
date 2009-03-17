@@ -25,8 +25,7 @@ public class XMLGrooveDOM{
 		
 		
 		assert 'plan->week->week->task->task->task->task->task' == plan.breadthFirst()*.name().join('->') 
-		
-		
+
 	}
 	
 }
