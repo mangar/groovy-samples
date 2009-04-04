@@ -2,6 +2,7 @@ bin/*
 bin-groovy/*
 webapp/WEB-INF/classes/*
 webapp/WEB-INF/lib/*
+src/com/mg/twitbay/dsl/TwitBayDSL_Test2.groovy
 .DS_Store
 .classpath
 .project
